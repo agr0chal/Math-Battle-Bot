@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Math Battle Bot",
+  "author": "agrochal",
+  "version": "1.0",
+  "description": "Bot for telegram game named Math Battle.",
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  }
+}
