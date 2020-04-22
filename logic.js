@@ -34,11 +34,23 @@ var time;
 
 chrome.storage.sync.get(['humanBehaviour'], function(result) {
   humanBehaviour = result.humanBehaviour;
+  if (typeof humanBehaviour === 'undefined') {
+    humanBehaviour = true;
+    chrome.storage.sync.set({
+      'humanBehaviour': true
+    }, function() {});
+  }
   document.getElementById('inputHumanMBB').checked = humanBehaviour;
 });
 
 chrome.storage.sync.get(['time'], function(result) {
   time = result.time;
+  if (typeof time === 'undefined') {
+    time = 500;
+    chrome.storage.sync.set({
+      'time': 500
+    }, function() {});
+  }
   document.getElementById('inputTimeMBB').value = time;
 });
 
