@@ -1,7 +1,7 @@
-chrome.storage.sync.get(['humanBehavior'], function(result) {
+chrome.storage.sync.get(['humanBehaviour'], function(result) {
   chrome.storage.sync.get(['time'], function(result2) {
     var play = true;
-    var humanBehavior = result.humanBehavior;
+    var humanBehaviour = result.humanBehaviour;
     var time = parseInt(result2.time, 10);
     var mistakeProtection = 8;
     var min;
@@ -13,7 +13,7 @@ chrome.storage.sync.get(['humanBehavior'], function(result) {
     function handleMessage(request) {
       time = request.time;
       updateRange(time);
-      humanBehavior = request.humanBehavior;
+      humanBehaviour = request.humanBehaviour;
       play = request.play;
       if (play === true) {
         startTheBot();
@@ -52,7 +52,7 @@ chrome.storage.sync.get(['humanBehavior'], function(result) {
           result = x / y;
         }
         var answer = (result == quest);
-        if (humanBehavior) {
+        if (humanBehaviour) {
           mistake = Math.floor(Math.random() * 41);
           if (mistake === 0 && mistakeProtection === 0) {
             answer = !answer;
@@ -75,7 +75,7 @@ chrome.storage.sync.get(['humanBehavior'], function(result) {
     }
 
     function runTheBot() {
-      if (humanBehavior) {
+      if (humanBehaviour) {
         responseTime = Math.floor(Math.random() * (max - min)) + min;
       } else {
         responseTime = time;

@@ -4,9 +4,9 @@ document.getElementById("updateButtonMBB").addEventListener("click", updateTheBo
 
 function updateTheBot() {
   var checkbox = document.getElementById('inputHumanMBB').checked;
-  humanBehavior = checkbox;
+  humanBehaviour = checkbox;
   chrome.storage.sync.set({
-    'humanBehavior': humanBehavior
+    'humanBehaviour': humanBehaviour
   }, function() {});
 
   var updateTime = document.getElementById('inputTimeMBB').value;
@@ -22,19 +22,19 @@ function updateTheBot() {
     currentWindow: true
   }, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {
-      humanBehavior: humanBehavior,
+      humanBehaviour: humanBehaviour,
       time: updateTime,
       play: false
     });
   });
 }
 
-var humanBehavior;
+var humanBehaviour;
 var time;
 
-chrome.storage.sync.get(['humanBehavior'], function(result) {
-  humanBehavior = result.humanBehavior;
-  document.getElementById('inputHumanMBB').checked = humanBehavior;
+chrome.storage.sync.get(['humanBehaviour'], function(result) {
+  humanBehaviour = result.humanBehaviour;
+  document.getElementById('inputHumanMBB').checked = humanBehaviour;
 });
 
 chrome.storage.sync.get(['time'], function(result) {
@@ -43,14 +43,14 @@ chrome.storage.sync.get(['time'], function(result) {
 });
 
 function startTheBot() {
-  chrome.storage.sync.get(['humanBehavior'], function(result) {
+  chrome.storage.sync.get(['humanBehaviour'], function(result) {
     chrome.storage.sync.get(['time'], function(result2) {
       chrome.tabs.query({
         active: true,
         currentWindow: true
       }, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-          humanBehavior: result.humanBehavior,
+          humanBehaviour: result.humanBehaviour,
           time: result2.time,
           play: true
         });
@@ -60,14 +60,14 @@ function startTheBot() {
 }
 
 function stopTheBot() {
-  chrome.storage.sync.get(['humanBehavior'], function(result) {
+  chrome.storage.sync.get(['humanBehaviour'], function(result) {
     chrome.storage.sync.get(['time'], function(result2) {
       chrome.tabs.query({
         active: true,
         currentWindow: true
       }, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {
-          humanBehavior: result.humanBehavior,
+          humanBehaviour: result.humanBehaviour,
           time: result2.time,
           play: false
         });
