@@ -3,14 +3,14 @@ document.getElementById("stopButtonMBB").addEventListener("click", stopTheBot);
 document.getElementById("updateButtonMBB").addEventListener("click", updateTheBot);
 
 function updateTheBot() {
-  var checkbox = document.getElementById('inputHumanMBB').checked;
+  const checkbox = document.getElementById('inputHumanMBB').checked;
   humanBehaviour = checkbox;
   chrome.storage.sync.set({
     'humanBehaviour': humanBehaviour
   }, function() {});
 
-  var updateTime = document.getElementById('inputTimeMBB').value;
-  var isnum = /^\d+$/.test(updateTime);
+  const updateTime = document.getElementById('inputTimeMBB').value;
+  const isnum = /^\d+$/.test(updateTime);
   if (isnum) {
     chrome.storage.sync.set({
       'time': updateTime
@@ -29,8 +29,8 @@ function updateTheBot() {
   });
 }
 
-var humanBehaviour;
-var time;
+let humanBehaviour;
+let time;
 
 chrome.storage.sync.get(['humanBehaviour'], function(result) {
   humanBehaviour = result.humanBehaviour;
